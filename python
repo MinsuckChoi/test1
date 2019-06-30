@@ -1,0 +1,167 @@
+import sys
+import math
+def unit_place_value(n):
+    result = 0 # 결과값
+    final = n
+    while final > 10:
+        a = 0  # list 의 길이
+        list = [int(i) for i in str(final)] # list 로 생성
+        while a < len(list):
+            result += list[a]
+            a += 1
+        final = result
+        if final > 10:
+            return unit_place_value(final)
+
+    print(result)
+
+unit_place_value(11)
+unit_place_value(3942)
+
+def test(did_pass):
+    linenum = sys._getframe(1).f_lineno #Get the caller's line number.
+    if did_pass:
+        msg = "Test at line {0} ok".format(linenum)
+    else:
+        msg = ("Test at line {0} FAILED.".format(linenum))
+    print(msg)
+    
+def sum_of_digit_square(n):
+    if n < 0:
+        n = n*-1
+    list = [int(i) for i in str(n)] # list 로 생성
+    a = 0 # list 의 길이
+    result = 0 # 결과값
+    while a < len(list):
+        result += (list[a] **2) #각 자리 제곱
+        a += 1
+    print(result)
+
+
+sum_of_digit_square(123)
+sum_of_digit_square(789)
+sum_of_digit_square(-123)
+
+def star_pattern(n):
+    for i in range(1, n+1):
+        print("*"*i)
+    for i in range(1, n):
+        print("*"*(n-i))
+
+star_pattern(5)
+star_pattern(6)
+
+def recursive_factirial(n):
+    factorial = 1
+    for i in range(1,n+1):
+        factorial *= i
+
+    print(factorial)
+
+recursive_factirial(4) == math.factorial(4)
+
+def perfect_square(n):
+    new = 0
+    old = n
+    result = 0
+    for i in range(1, n):
+        new = abs(n - (i **2)) #abs 절대값
+        if old > new:
+            old = new
+            result = i
+    print(result)
+
+perfect_square(15)
+perfect_square(99)
+
+def non_recursive_factorial(n):
+    if n == 1:
+        return 1
+    else:
+        return n * non_recursive_factorial(n-1)
+
+print(non_recursive_factorial(4))
+
+def my_gcd(a,b):
+    if(b>a):
+        a,b = b,a
+    while(b!=0):
+        a = a % b # a / b 나머지값
+        a,b = b,a
+    print(a)
+
+my_gcd(12,16)
+my_gcd(16,12)
+my_gcd(9,6)
+my_gcd(-12,-38)
+
+def mult_of_list():
+    k = list(map(int,input("띄어쓰기로 숫자를 입력하시오 : ").split()))
+    a = 0
+    result = 1
+    while a < len(k):
+        result = result * k[a]
+        a += 1
+    print(result)
+
+mult_of_list()
+
+def max_of_three():
+    k = list(map(int, input("띄어쓰기로 다음 숫자를 입력하시오 : ").split()))
+    a = len(k)
+    while a > 3:
+        k.remove(min(k))
+        a -= 1
+    print(k)
+
+max_of_three()
+
+def is_prime(n):
+    if n < 2:
+        print("False")
+    for i in range(2, n):
+        if(n%i == 0):
+            print("False")
+            break
+    print("True")
+
+
+################ 오류 발생 나중에 확인
+
+is_prime(2)
+is_prime(5)
+is_prime(22)
+
+def even_filter():
+    k = list(map(int, input("띄어쓰기로 다음 숫자를 입력하시오 : ").split()))
+    a = len(k)-1
+    while a >= 0:
+        if k[a] % 2 == 1:
+            del k[a]
+        elif k[a] == 1:
+            del k[a]
+        a -= 1
+    print(k)
+
+even_filter()
+
+def absolute_value(n):  # Buggy version
+    """ Compute the absolute value of n """
+    if n < 0:
+        return n*(-1)
+    elif n > 0:
+        return n
+    else:
+        return 0
+
+def test(a,b):
+    if a == b:
+        print(True)
+    else:
+        print(False)
+
+test(absolute_value(17), 17)
+test(absolute_value(-17), 17)
+test(absolute_value(0), 0)
+test(absolute_value(3.14), 3.14)
+test(absolute_value(-3.14), 3.14)
