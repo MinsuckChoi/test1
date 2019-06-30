@@ -1,0 +1,165 @@
+def test (did_pass): ## test 함수
+  if did_pass:
+    print('Passed')
+  else:
+    print('Failed')
+
+def add_vectors(u, v): ## list 5번
+    list = u[:]
+    for i in range(0,len(u)):
+        list[i] = u[i] + v[i]
+    return list
+
+def scalar_mult(s,v): ## list 6번
+    list = v[:]
+    for i in range(0,len(v)):
+        list[i] = s*v[i]
+    return list
+
+def dot_product(u,v): ## list 7번
+    result = 0
+    if len(u)!= len(v):
+        return 0
+    else:
+        for i in range(0,len(v)):
+            result += (u[i] * v[i])
+        return result
+
+##def cross_product(u,v): ## list 8번
+##    c = [u[1] * v[2] - u[2] * v[1],
+##         u[2] * v[0] - u[0] * v[2],
+##         u[0] * v[1] - u[1] * v[0]]
+##    return c
+
+## list 9번은 뭔소린지 모르겠어요...
+## string.join 함수는 공백문자를 분리하고 나머지 모든 문자를 가져옴.
+## split 또한 공백을 제외한 나머지 문자열을 가져오니 둘은 같다는 것을 의미?..
+
+def replace(s,old,new): ## list 10번
+    result = s.replace(old,new)
+    return result
+
+################################################
+##            string                  ##
+
+## String 1
+## "python"[1] == 'y'
+## "Strings are sequences of characters."[5] == g
+## len("wonderful") == 9
+## "Mystery"[:4] == 'Myst'
+## "p" in "pineapple" == true
+## "apple" in "Pineapple" == true
+## "pear" not in "Pineapple" == true
+## "apple" > "pineapple" == False
+## Pineapple" < "Peach" == False
+
+## String 2
+##prefixes = "JKLMNOPQ"
+##suffix = "ack"
+
+##for letter in prefixes:
+##    print(letter + suffix)
+## Jack,Kack,Lack,Mack,Nack,Oack,Pack,Qack
+
+## String 3
+fruit = "banana"
+count = 0
+for char in fruit:
+    if char == "a":
+        count += 1
+
+##print("a in banana {0}".format(count)) == 3
+
+## String 4
+def find( word, letter):
+    result = 0
+    for i in range(0,len(word)):
+        if word[i] == letter:
+            result += 1
+    return result
+
+##String 5번
+def contain(word, letter):
+    result = 0
+    for i in range(0, len(word)):
+        if word[i] == letter:
+            result += 1
+    length = word.replace(" ","")
+    print("Your text contains {0} words, of which {1} ({2} %) contain an {3}.".format(len(length),result,((result/len(length))*100),letter))
+    return 0
+
+## String 6번
+def gugudan(a,b):
+    for i in range(a,b):
+        for j in range(a,b):
+            print(i*j, end=' ')
+        print()
+
+## String 7번
+def reverse(string):
+    result = string[::-1]
+    return result
+
+## String 8번
+def mirror(string):
+    reverse = string[::-1]
+    result = string + reverse
+    return result
+
+## String 9번
+def remove_letter(letter, word):
+    result = word.replace(letter, "")
+    return result
+
+## String 10번
+def is_palindrome(letter):
+    if reverse(letter)==letter:
+        return 1
+    else:
+        return 0
+
+## String 11번
+def count_letters(string, letter, num=0):
+    count_1 = 0
+    while True:
+        if letter.find(string, num) == -1:
+            break
+        else:
+            count_1 += 1
+            num = letter.find(string, num) +1
+    return count_1
+
+
+caller_2 = count_letters('a', 'banana')
+print('Q) 4')
+print(caller_2)
+
+##String 12번
+def remove(letter,word):
+    result = word.replace(letter,"",1)
+    return result
+
+## String 13번
+def remove_all(letter,word):
+    result = word.replace(letter,"")
+    return result
+
+
+
+test(add_vectors([1,1,0],[1,1,0]) == [2,2,0]) ##list 5번
+test(scalar_mult(5, [1, 2]) == [5, 10]) ## list 6번
+test(dot_product([1, 1], [1, 1]) ==  2)  ##list 7번
+##test(cross_product([1,2,3],[4,5,6] == [-3,6,-3])) ## list8번
+test(replace("Mississippi", "i", "I") == "MIssIssIppI") ##list 9번
+print("a in banana {0}".format(count)) == 3 ##String3번
+test(find('banana','a') == 3) ##String 4번
+contain("Hello World","o") ## string 5번
+gugudan(1,12) ##STring 6번
+test(reverse("happy") == "yppah") ##String 7번
+test(mirror("Python") == "PythonnohtyP") ##String 8번
+test(remove_letter("a", "apple") == "pple") ##String 9번
+test(is_palindrome("abba"))## String 10번
+test(count("is", "Mississippi") == 2) ## String 11번
+test(remove("an", "banana") == "bana") ##String 12번
+test(remove_all("an", "banana") == "ba") ##String 13번
+
